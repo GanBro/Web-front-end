@@ -1,156 +1,196 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bootstrap Example</title>
-  <link href="./css/bootstrap.css" rel="stylesheet" />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
-  <style>
-    .custom-search .form-control {
-      width: 500px;
-    }
-
-    .border-secondary {
-      border-color: lightgray !important;
-    }
-
-    .col-md-2::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: 1px;
-      background-color: lightgray;
-      left: 0;
-    }
-
-    .col-md-2,
-    .col-md-10 {
-      height: 100%;
-    }
-
-    .row {
-      margin-left: -55px;
-    }
-
-    header {
-      border-bottom: 1px solid lightgray;
-    }
-
-    .fa-caret-down,
-    .fa-caret-up {
-      cursor: pointer;
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    /* 调整图标的样式，使其垂直居中 */
-    .icon-container {
-      display: flex;
-      align-items: center;
-    }
-
-    /* 调整多选框的样式 */
-    .checkbox-container {
-      margin-top: 10px;
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <div class="bg-light py-3">
-      <div class="container d-flex justify-content-between align-items-center">
-        <a class="navbar-brand" href="#" style="font-size: 24px">Shoe.</a>
-        <form class="d-flex custom-search">
-          <div class="input-group">
-            <button class="btn btn-outline-primary" type="submit">
-              <i class="fas fa-search search-icon"></i>
-            </button>
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Search"
-              aria-label="Search"
-            />
-          </div>
-        </form>
-      </div>
-    </div>
-  </header>
-
-  <div class="container">
-    <div class="row">
-      <div class="col-md-2 border-end border-secondary">
-        <div class="row">
-          <div class="col-md-12 border-bottom border-secondary">
-            <br>
-            <br>
-          </div>
-        </div>
-        <div class="row">
-          <!-- 保留 "Categories" 文本并添加图标 -->
-          <div class="col-md-12 border-bottom border-secondary">
-            <div class="icon-container">
-              Categories
-              <i class="fas fa-caret-down" id="categoriesDropdown"></i>
-            </div>
-            <!-- 添加多选框 -->
-            <div class="checkbox-container hidden">
-              <input type="checkbox" id="checkbox1" />
-              <label for="checkbox1">Option 1</label>
-              <br>
-              <input type="checkbox" id="checkbox2" />
-              <label for="checkbox2">Option 2</label>
-              <br>
-              <input type="checkbox" id="checkbox3" />
-              <label for="checkbox3">Option 3</label>
-            </div>
-          </div>
-        </div>
-        <div class="row hidden">
-          <!-- 区域3改为多选框 -->
-          <div class="col-md-12 border-bottom border-secondary">
-            <div class="checkbox-container">
-              <input type="checkbox" id="checkbox4" />
-              <label for="checkbox4">Option 4</label>
-              <br>
-              <input type="checkbox" id="checkbox5" />
-              <label for="checkbox5">Option 5</label>
-              <br>
-              <input type="checkbox" id="checkbox6" />
-              <label for="checkbox6">Option 6</label>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12 border-bottom border-secondary">区域4</div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">区域5</div>
-        </div>
-      </div>
-      <div class="col-md-10">右侧内容放在这里</div>
-    </div>
-  </div>
-
-  <script>
-    var categoriesDropdown = document.getElementById('categoriesDropdown');
-    var checkboxContainer = document.querySelector('.col-md-2 .checkbox-container');
-
-    categoriesDropdown.addEventListener('click', function() {
-      if (checkboxContainer.classList.contains('hidden')) {
-        checkboxContainer.classList.remove('hidden');
-        categoriesDropdown.classList.remove('fa-caret-down');
-        categoriesDropdown.classList.add('fa-caret-up');
-      } else {
-        checkboxContainer.classList.add('hidden');
-        categoriesDropdown.classList.remove('fa-caret-up');
-        categoriesDropdown.classList.add('fa-caret-down');
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bootstrap Example</title>
+    <link href="./css/bootstrap.css" rel="stylesheet" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      .custom-search .form-control {
+        width: 500px;
       }
-    });
-  </script>
-</body>
+      .border-secondary {
+        border-color: lightgray !important;
+      }
+      .col-md-2::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        background-color: lightgray;
+        left: 0;
+      }
+      .col-md-2,
+      .col-md-10 {
+        height: 100%;
+      }
+      /* 左下方区域位置 */
+      .row {
+        margin-left: -75px;
+      }
+      header {
+        border-bottom: 1px solid lightgray;
+      }
+      .fa-caret-down,
+      .fa-caret-up {
+        cursor: pointer;
+      }
+      .hidden {
+        display: none;
+      }
+      /* 调整图标的样式，使其垂直居中 */
+      .icon-container {
+        display: flex;
+        align-items: center;
+      }
+      /* 调整多选框的样式 */
+      .checkbox-container {
+        margin-top: 10px;
+      }
+      /* 调整输入框大小 */
+      #minPrice,
+      #maxPrice {
+        width: 80px;
+      }
+      .size-buttons {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-gap: 10px;
+        margin-top: 20px;
+      }
+      /* 添加样式定义浅灰色分割线 */
+      .header-divider {
+        border-color: lightgray;
+        margin: 0; /* 修复默认 margin 导致分割线不居中的问题 */
+      }
+      .icon-container {
+        margin: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <script type="module">
+      import { createHeader } from "./js/header.js";
+
+      document.addEventListener("DOMContentLoaded", function () {
+        var headerContainer = document.getElementById("header-container");
+        headerContainer.innerHTML = createHeader();
+      });
+    </script>
+
+    <div id="header-container"></div>
+
+    <div class="container">
+      <div class="row">
+        <!-- 左边 -->
+        <div class="col-md-3 border-end border-secondary">
+          <div class="row">
+            <div class="col-md-12 border-bottom border-secondary">
+              <br />
+              <br />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 border-bottom border-secondary">
+              <div class="icon-container" style="margin: 10px;">
+                Categories
+                <i class="fas fa-caret-down" id="categoriesDropdown"></i>
+              </div>
+              <!-- 增加下拉文字容器的间隔 -->
+              <div class="checkbox-container hidden" id="checkboxContainer" style="margin: 10px;">
+                <input type="checkbox" id="checkbox1" />
+                <label for="checkbox1">Flip Flops</label>
+                <br />
+                <input type="checkbox" id="checkbox2" />
+                <label for="checkbox2">Sneakers</label>
+                <br />
+                <input type="checkbox" id="checkbox3" />
+                <label for="checkbox3">Lace-Up Shoes</label>
+                <input type="checkbox" id="checkbox4" />
+                <label for="checkbox4">Shoe</label>
+              </div>
+            </div>
+          </div>
+          
+          <div class="row hidden">
+            <!-- 区域3改为多选框 -->
+            <div class="col-md-12 border-bottom border-secondary" >
+              <div class="checkbox-container">
+                <input type="checkbox" id="checkbox4" />
+                <label for="checkbox4">Option 4</label>
+                <br />
+                <input type="checkbox" id="checkbox5" />
+                <label for="checkbox5">Option 5</label>
+                <br />
+                <input type="checkbox" id="checkbox6" />
+                <label for="checkbox6">Option 6</label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 border-bottom border-secondary">
+              <div class="form-group d-flex align-items-center" style="margin: 10px;">
+                <label for="priceRange" class="mr-2">价格区间：</label>
+                <input
+                  type="text"
+                  class="form-control mr-2"
+                  id="minPrice"
+                  placeholder="最低价"
+                />
+                <span class="mr-2">~</span>
+                <input
+                  type="text"
+                  class="form-control mr-2"
+                  id="maxPrice"
+                  placeholder="最高价"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">Size</div>
+            <div class="size-buttons" id="sizeButtonsContainer">
+              <!-- 添加按钮 -->
+            </div>
+          </div>
+        </div>
+        <!-- 右边 9 + 3 = 12 -->
+        <div class="col-md-9">右侧内容放在这里</div>
+      </div>
+    </div>
+
+    <script>
+      var categoriesDropdown = document.getElementById("categoriesDropdown");
+      var checkboxContainer = document.getElementById("checkboxContainer");
+      var sizeButtonsContainer = document.getElementById(
+        "sizeButtonsContainer"
+      );
+
+      categoriesDropdown.addEventListener("click", function () {
+        if (checkboxContainer.classList.contains("hidden")) {
+          checkboxContainer.classList.remove("hidden");
+          categoriesDropdown.classList.remove("fa-caret-down");
+          categoriesDropdown.classList.add("fa-caret-up");
+        } else {
+          checkboxContainer.classList.add("hidden");
+          categoriesDropdown.classList.remove("fa-caret-up");
+          categoriesDropdown.classList.add("fa-caret-down");
+        }
+      });
+
+      // 动态生成按钮
+      for (var i = 35; i <= 49; i++) {
+        var button = document.createElement("button");
+        button.className = "btn btn-outline-primary";
+        button.textContent = i;
+        sizeButtonsContainer.appendChild(button);
+      }
+    </script>
+  </body>
 </html>
