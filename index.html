@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bootstrap Example</title>
-  <link href="./css/bootstrap.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
   <style>
     .custom-search .form-control {
@@ -31,7 +31,7 @@
     }
 
     .row {
-      margin-left: -55px;
+      margin-left: -65px;
     }
 
     header {
@@ -47,15 +47,36 @@
       display: none;
     }
 
-    /* 调整图标的样式，使其垂直居中 */
     .icon-container {
       display: flex;
       align-items: center;
     }
 
-    /* 调整多选框的样式 */
     .checkbox-container {
       margin-top: 10px;
+    }
+
+    /* 调整多选框的样式 */
+    .checkbox-container label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    /* 调整价格滑块的样式 */
+    #priceRangeContainer {
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+    }
+
+    #priceRange {
+      width: 100%; /* 设置宽度 */
+      margin: 0;
+    }
+
+    #minPrice, #maxPrice {
+      flex: 0 0 10%; /* 设置宽度 */
+      text-align: center;
     }
   </style>
 </head>
@@ -99,14 +120,18 @@
             </div>
             <!-- 添加多选框 -->
             <div class="checkbox-container hidden">
-              <input type="checkbox" id="checkbox1" />
-              <label for="checkbox1">Option 1</label>
-              <br>
-              <input type="checkbox" id="checkbox2" />
-              <label for="checkbox2">Option 2</label>
-              <br>
-              <input type="checkbox" id="checkbox3" />
-              <label for="checkbox3">Option 3</label>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="checkbox1">
+                <label class="form-check-label" for="checkbox1">Option 1</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="checkbox2">
+                <label class="form-check-label" for="checkbox2">Option 2</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="checkbox3">
+                <label class="form-check-label" for="checkbox3">Option 3</label>
+              </div>
             </div>
           </div>
         </div>
@@ -114,19 +139,38 @@
           <!-- 区域3改为多选框 -->
           <div class="col-md-12 border-bottom border-secondary">
             <div class="checkbox-container">
-              <input type="checkbox" id="checkbox4" />
-              <label for="checkbox4">Option 4</label>
-              <br>
-              <input type="checkbox" id="checkbox5" />
-              <label for="checkbox5">Option 5</label>
-              <br>
-              <input type="checkbox" id="checkbox6" />
-              <label for="checkbox6">Option 6</label>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="checkbox4">
+                <label class="form-check-label" for="checkbox4">Option 4</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="checkbox5">
+                <label class="form-check-label" for="checkbox5">Option 5</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="checkbox6">
+                <label class="form-check-label" for="checkbox6">Option 6</label>
+              </div>
             </div>
           </div>
         </div>
         <div class="row">
-          <div class="col-md-12 border-bottom border-secondary">区域4</div>
+          <div class="col-md-12 border-bottom border-secondary">
+            <!-- 价格滑块容器 -->
+            <div id="priceRangeContainer">
+              <span id="minPrice">$0</span>
+              <input
+                type="range"
+                id="priceRange"
+                min="0"
+                max="100"
+                step="1"
+                value="0"
+                oninput="updatePrice(this.value)"
+              />
+              <span id="maxPrice">$100</span>
+            </div>
+          </div>
         </div>
         <div class="row">
           <div class="col-md-12">区域5</div>
@@ -151,6 +195,22 @@
         categoriesDropdown.classList.add('fa-caret-down');
       }
     });
+
+    // 获取价格滑块元素和显示金额的元素
+    var priceRange = document.getElementById('priceRange');
+    var minPrice = document.getElementById('minPrice');
+    var maxPrice = document.getElementById('maxPrice');
+
+    // 监听价格滑块变化事件
+    priceRange.addEventListener('input', function() {
+      updatePrice(priceRange.value);
+    });
+
+    function updatePrice(value) {
+      // 更新显示的金额
+      minPrice.textContent = '$' + value;
+      maxPrice.textContent = '$' + (100 - value);
+    }
   </script>
 </body>
 </html>
