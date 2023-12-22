@@ -93,16 +93,21 @@
             <div class="col-md-12 border-bottom border-secondary">
               <br />
               <br />
+              <br />
             </div>
           </div>
           <div class="row">
             <div class="col-md-12 border-bottom border-secondary">
-              <div class="icon-container" style="margin: 10px;">
+              <div class="icon-container" style="margin: 10px">
                 Categories
                 <i class="fas fa-caret-down" id="categoriesDropdown"></i>
               </div>
               <!-- 增加下拉文字容器的间隔 -->
-              <div class="checkbox-container hidden" id="checkboxContainer" style="margin: 10px;">
+              <div
+                class="checkbox-container hidden"
+                id="checkboxContainer"
+                style="margin: 10px"
+              >
                 <input type="checkbox" id="checkbox1" />
                 <label for="checkbox1">Flip Flops</label>
                 <br />
@@ -116,10 +121,10 @@
               </div>
             </div>
           </div>
-          
+
           <div class="row hidden">
             <!-- 区域3改为多选框 -->
-            <div class="col-md-12 border-bottom border-secondary" >
+            <div class="col-md-12 border-bottom border-secondary">
               <div class="checkbox-container">
                 <input type="checkbox" id="checkbox4" />
                 <label for="checkbox4">Option 4</label>
@@ -134,7 +139,10 @@
           </div>
           <div class="row">
             <div class="col-md-12 border-bottom border-secondary">
-              <div class="form-group d-flex align-items-center" style="margin: 10px;">
+              <div
+                class="form-group d-flex align-items-center"
+                style="margin: 10px"
+              >
                 <label for="priceRange" class="mr-2">价格区间：</label>
                 <input
                   type="text"
@@ -159,9 +167,21 @@
               <!-- 添加按钮 -->
             </div>
           </div>
-        </div>
+        </div>  
         <!-- 右边 9 + 3 = 12 -->
-        <div class="col-md-9">右侧内容放在这里</div>
+        <div class="col-md-9">
+          <div class="d-flex align-items-center justify-content-between mb-3" style="margin: 10px">
+            <h2 class="mb-0">ShoeLists</h2>
+            <select id="selectCategory" class="form-select w-25">
+              <option value="Pirce">Sort By Pirce</option>
+              <option value="Size">Sort By Size</option>
+              <option value="Category">Sort By Category</option>
+            </select>
+          </div>
+        </div>
+        
+        
+        
       </div>
     </div>
 
