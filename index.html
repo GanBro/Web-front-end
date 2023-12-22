@@ -74,14 +74,7 @@
     </style>
   </head>
   <body>
-    <script type="module">
-      import { createHeader } from "./js/header.js";
-
-      document.addEventListener("DOMContentLoaded", function () {
-        var headerContainer = document.getElementById("header-container");
-        headerContainer.innerHTML = createHeader();
-      });
-    </script>
+    <script type="module" src="./js/shoe.js"></script>
 
     <div id="header-container"></div>
 
@@ -116,27 +109,13 @@
                 <br />
                 <input type="checkbox" id="checkbox3" />
                 <label for="checkbox3">Lace-Up Shoes</label>
+                <br />
                 <input type="checkbox" id="checkbox4" />
                 <label for="checkbox4">Shoe</label>
               </div>
             </div>
           </div>
 
-          <div class="row hidden">
-            <!-- 区域3改为多选框 -->
-            <div class="col-md-12 border-bottom border-secondary">
-              <div class="checkbox-container">
-                <input type="checkbox" id="checkbox4" />
-                <label for="checkbox4">Option 4</label>
-                <br />
-                <input type="checkbox" id="checkbox5" />
-                <label for="checkbox5">Option 5</label>
-                <br />
-                <input type="checkbox" id="checkbox6" />
-                <label for="checkbox6">Option 6</label>
-              </div>
-            </div>
-          </div>
           <div class="row">
             <div class="col-md-12 border-bottom border-secondary">
               <div
@@ -173,112 +152,26 @@
           <div class="d-flex align-items-center justify-content-between mb-3" style="margin: 10px">
             <h2 class="mb-0">ShoeLists</h2>
             <select id="selectCategory" class="form-select w-25">
-              <option value="Pirce">Sort By Pirce</option>
+              <option value="space" disabled selected>请选择您的排序方式</option>
+              <option value="Price">Sort By Price</option>
               <option value="Size">Sort By Size</option>
               <option value="Category">Sort By Category</option>
+              <option value="Brand">Sort By Brand</option>
             </select>
           </div>
 
           <!-- 展示鞋的网格 -->
-          <div class="row" style="margin: 0;">
+          <div class="row" style="margin: 0;" id="shoesContainer">
             <!-- 鞋的网格项示例，您可以根据需要添加更多项 -->
-            <div class="col-md-6 mb-3">
-              <div class="card">
-                <img src="shoe1.jpg" class="card-img-top" alt="Shoe 1">
-                <div class="card-body">
-                  <h5 class="card-title">Shoe 1</h5>
-                  <p class="card-text">Description of Shoe 1.</p>
-                  <a href="#" class="btn btn-primary">View Details</a>
-                </div>
-              </div>
-            </div>
-            <!-- 鞋的网格项示例，您可以根据需要添加更多项 -->
-            <div class="col-md-6 mb-3">
-              <div class="card">
-                <img src="shoe2.jpg" class="card-img-top" alt="Shoe 2">
-                <div class="card-body">
-                  <h5 class="card-title">Shoe 2</h5>
-                  <p class="card-text">Description of Shoe 2.</p>
-                  <a href="#" class="btn btn-primary">View Details</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6 mb-3">
-              <div class="card">
-                <img src="shoe3.jpg" class="card-img-top" alt="Shoe 3">
-                <div class="card-body">
-                  <h5 class="card-title">Shoe 3</h5>
-                  <p class="card-text">Description of Shoe 3.</p>
-                  <a href="#" class="btn btn-primary">View Details</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6 mb-3">
-              <div class="card">
-                <img src="shoe4.jpg" class="card-img-top" alt="Shoe 4">
-                <div class="card-body">
-                  <h5 class="card-title">Shoe 4</h5>
-                  <p class="card-text">Description of Shoe 4.</p>
-                  <a href="#" class="btn btn-primary">View Details</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6 mb-3">
-              <div class="card">
-                <img src="shoe5.jpg" class="card-img-top" alt="Shoe 5">
-                <div class="card-body">
-                  <h5 class="card-title">Shoe 5</h5>
-                  <p class="card-text">Description of Shoe 5.</p>
-                  <a href="#" class="btn btn-primary">View Details</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6 mb-3">
-              <div class="card">
-                <img src="shoe6.jpg" class="card-img-top" alt="Shoe 6">
-                <div class="card-body">
-                  <h5 class="card-title">Shoe 6</h5>
-                  <p class="card-text">Description of Shoe 6.</p>
-                  <a href="#" class="btn btn-primary">View Details</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6 mb-3">
-              <div class="card">
-                <img src="shoe7.jpg" class="card-img-top" alt="Shoe 7">
-                <div class="card-body">
-                  <h5 class="card-title">Shoe 7</h5>
-                  <p class="card-text">Description of Shoe 7.</p>
-                  <a href="#" class="btn btn-primary">View Details</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6 mb-3">
-              <div class="card">
-                <img src="shoe8.jpg" class="card-img-top" alt="Shoe 8">
-                <div class="card-body">
-                  <h5 class="card-title">Shoe 8</h5>
-                  <p class="card-text">Description of Shoe 8.</p>
-                  <a href="#" class="btn btn-primary">View Details</a>
-                </div>
-              </div>
-            </div>
-            <!-- 可继续添加更多的鞋的网格项 -->
           </div>
-          
         </div>
-        
-        
-        
       </div>
     </div>
 
     <script>
       var categoriesDropdown = document.getElementById("categoriesDropdown");
       var checkboxContainer = document.getElementById("checkboxContainer");
-      var sizeButtonsContainer = document.getElementById(
-        "sizeButtonsContainer"
-      );
+      var sizeButtonsContainer = document.getElementById("sizeButtonsContainer");
 
       categoriesDropdown.addEventListener("click", function () {
         if (checkboxContainer.classList.contains("hidden")) {
