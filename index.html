@@ -52,6 +52,11 @@
       display: flex;
       align-items: center;
     }
+
+    /* 调整多选框的样式 */
+    .checkbox-container {
+      margin-top: 10px;
+    }
   </style>
 </head>
 <body>
@@ -92,10 +97,33 @@
               Categories
               <i class="fas fa-caret-down" id="categoriesDropdown"></i>
             </div>
+            <!-- 添加多选框 -->
+            <div class="checkbox-container hidden">
+              <input type="checkbox" id="checkbox1" />
+              <label for="checkbox1">Option 1</label>
+              <br>
+              <input type="checkbox" id="checkbox2" />
+              <label for="checkbox2">Option 2</label>
+              <br>
+              <input type="checkbox" id="checkbox3" />
+              <label for="checkbox3">Option 3</label>
+            </div>
           </div>
         </div>
         <div class="row hidden">
-          <div class="col-md-12 border-bottom border-secondary">区域3</div>
+          <!-- 区域3改为多选框 -->
+          <div class="col-md-12 border-bottom border-secondary">
+            <div class="checkbox-container">
+              <input type="checkbox" id="checkbox4" />
+              <label for="checkbox4">Option 4</label>
+              <br>
+              <input type="checkbox" id="checkbox5" />
+              <label for="checkbox5">Option 5</label>
+              <br>
+              <input type="checkbox" id="checkbox6" />
+              <label for="checkbox6">Option 6</label>
+            </div>
+          </div>
         </div>
         <div class="row">
           <div class="col-md-12 border-bottom border-secondary">区域4</div>
@@ -110,15 +138,15 @@
 
   <script>
     var categoriesDropdown = document.getElementById('categoriesDropdown');
-    var region3 = document.querySelector('.col-md-2 .row:nth-child(3)');
+    var checkboxContainer = document.querySelector('.col-md-2 .checkbox-container');
 
     categoriesDropdown.addEventListener('click', function() {
-      if (region3.classList.contains('hidden')) {
-        region3.classList.remove('hidden');
+      if (checkboxContainer.classList.contains('hidden')) {
+        checkboxContainer.classList.remove('hidden');
         categoriesDropdown.classList.remove('fa-caret-down');
         categoriesDropdown.classList.add('fa-caret-up');
       } else {
-        region3.classList.add('hidden');
+        checkboxContainer.classList.add('hidden');
         categoriesDropdown.classList.remove('fa-caret-up');
         categoriesDropdown.classList.add('fa-caret-down');
       }
