@@ -1,151 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bootstrap Example</title>
-    <link href="./css/bootstrap.css" rel="stylesheet" />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-      rel="stylesheet"
-    />
-    <!-- 引用新的样式文件 -->
-    <link href="./css/styles.css" rel="stylesheet" />
-  </head>
-  <body>
-    <script type="module" src="./js/shoe.js"></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bootstrap Example</title>
+  <link href="./css/bootstrap.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
+  <!-- 引用新的样式文件 -->
+  <link href="./css/styles.css" rel="stylesheet" />
+</head>
+<body>
+  <script type="module" src="./js/shoe.js"></script>
 
-    <script type="module">
-      import { createHeader } from "./js/header.js";
+  <script type="module">
+    import { createHeader } from "./js/header.js";
 
-      document.addEventListener("DOMContentLoaded", function () {
-        var headerContainer = document.getElementById("header-container");
-        headerContainer.innerHTML = createHeader();
-      });
-    </script>
-    <div id="header-container"></div>
+    document.addEventListener("DOMContentLoaded", function () {
+      var headerContainer = document.getElementById("header-container");
+      headerContainer.innerHTML = createHeader();
+    });
+  </script>
+  <div id="header-container"></div>
 
-    <div class="container">
-      <div class="row">
-        <!-- 左边 -->
-        <div class="col-md-3 border-end border-secondary">
-          <div class="row">
-            <div class="col-md-12 border-bottom border-secondary">
-              <br />
-              <br />
-              <br />
-            </div>
+  <div class="container">
+    <div class="row">
+      <!-- 左边 -->
+      <div class="col-md-3 border-end border-secondary">
+        <div class="row">
+          <div class="col-md-12 border-bottom border-secondary">
+            <br />
+            <br />
+            <br />
           </div>
-          <div class="row">
-            <div class="col-md-12 border-bottom border-secondary">
-              <div class="icon-container" style="margin: 10px">
-                Categories
-                <i class="fas fa-caret-down" id="categoriesDropdown"></i>
-              </div>
-              <!-- 增加下拉文字容器的间隔 -->
-              <div
-                class="checkbox-container hidden"
-                id="checkboxContainer"
-                style="margin: 10px"
-              >
-                <input type="checkbox" id="checkbox1" />
-                <label for="checkbox1">Flip Flops</label>
-                <br />
-                <input type="checkbox" id="checkbox2" />
-                <label for="checkbox2">Sneakers</label>
-                <br />
-                <input type="checkbox" id="checkbox3" />
-                <label for="checkbox3">Lace-Up Shoes</label>
-                <br />
-                <input type="checkbox" id="checkbox4" />
-                <label for="checkbox4">Shoe</label>
-              </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 border-bottom border-secondary">
+            <div class="icon-container" style="margin: 10px">
+              Categories
+              <i class="fas fa-caret-down" id="categoriesDropdown"></i>
             </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-12 border-bottom border-secondary">
-              <div
-                class="form-group d-flex align-items-center"
-                style="margin: 10px"
-              >
-                <label for="priceRange" class="mr-2">价格区间：</label>
-                <input
-                  type="text"
-                  class="form-control mr-2"
-                  id="minPrice"
-                  placeholder="最低价"
-                />
-                <span class="mr-2">~</span>
-                <input
-                  type="text"
-                  class="form-control mr-2"
-                  id="maxPrice"
-                  placeholder="最高价"
-                />
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-12" style="margin: 10px">Size</div>
-            <div class="size-buttons" id="sizeButtonsContainer">
-              <!-- 添加按钮 -->
+            <!-- 增加下拉文字容器的间隔 -->
+            <div class="checkbox-container hidden" id="checkboxContainer" style="margin: 10px">
+              <input type="checkbox" id="checkbox1" />
+              <label for="checkbox1">Flip Flops</label>
+              <br />
+              <input type="checkbox" id="checkbox2" />
+              <label for="checkbox2">Sneakers</label>
+              <br />
+              <input type="checkbox" id="checkbox3" />
+              <label for="checkbox3">Lace-Up Shoes</label>
+              <br />
+              <input type="checkbox" id="checkbox4" />
+              <label for="checkbox4">Shoe</label>
             </div>
           </div>
         </div>
-        <!-- 右边 9 + 3 = 12 -->
-        <div class="col-md-9">
-          <div
-            class="d-flex align-items-center justify-content-between mb-3"
-            style="margin: 10px"
-          >
-            <h2 class="mb-0">ShoeLists</h2>
-            <select id="selectCategory" class="form-select w-25">
-              <option value="space" disabled selected>
-                请选择您的排序方式
-              </option>
-              <option value="Price">Sort By Price</option>
-              <option value="Size">Sort By Size</option>
-              <option value="Category">Sort By Category</option>
-              <option value="Brand">Sort By Brand</option>
-            </select>
-          </div>
 
-          <!-- 展示鞋的网格 -->
-          <div class="row" style="margin: 0" id="shoesContainer">
-            <!-- 鞋的网格项示例，您可以根据需要添加更多项 -->
+        <div class="row">
+          <div class="col-md-12 border-bottom border-secondary">
+            <div class="form-group d-flex align-items-center" style="margin: 10px">
+              <label for="priceRange" class="mr-2">价格区间：</label>
+              <input type="text" class="form-control mr-2" id="minPrice" placeholder="最低价" />
+              <span class="mr-2">~</span>
+              <input type="text" class="form-control mr-2" id="maxPrice" placeholder="最高价" />
+            </div>
           </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12" style="margin: 10px">Size</div>
+          <div class="size-buttons" id="sizeButtonsContainer">
+            <!-- 添加按钮 -->
+          </div>
+          <button class="btn btn-primary" id="sizeFilterButton">筛选</button>
+        </div>
+      </div>
+      <!-- 右边 9 + 3 = 12 -->
+      <div class="col-md-9">
+        <div class="d-flex align-items-center justify-content-between mb-3" style="margin: 10px">
+          <h2 class="mb-0">ShoeLists</h2>
+          <select id="selectCategory" class="form-select w-25">
+            <option value="space" disabled selected>请选择您的排序方式</option>
+            <option value="Price">Sort By Price</option>
+            <option value="Size">Sort By Size</option>
+            <option value="Category">Sort By Category</option>
+            <option value="Brand">Sort By Brand</option>
+          </select>
+        </div>
+
+        <!-- 展示鞋的网格 -->
+        <div class="row" style="margin: 0" id="shoesContainer">
+          <!-- 鞋的网格项示例，您可以根据需要添加更多项 -->
         </div>
       </div>
     </div>
+  </div>
 
-    <script>
-      var categoriesDropdown = document.getElementById("categoriesDropdown");
-      var checkboxContainer = document.getElementById("checkboxContainer");
-      var sizeButtonsContainer = document.getElementById(
-        "sizeButtonsContainer"
-      );
+  <script>
+    var categoriesDropdown = document.getElementById("categoriesDropdown");
+    var checkboxContainer = document.getElementById("checkboxContainer");
+    var sizeButtonsContainer = document.getElementById("sizeButtonsContainer");
 
-      categoriesDropdown.addEventListener("click", function () {
-        if (checkboxContainer.classList.contains("hidden")) {
-          checkboxContainer.classList.remove("hidden");
-          categoriesDropdown.classList.remove("fa-caret-down");
-          categoriesDropdown.classList.add("fa-caret-up");
-        } else {
-          checkboxContainer.classList.add("hidden");
-          categoriesDropdown.classList.remove("fa-caret-up");
-          categoriesDropdown.classList.add("fa-caret-down");
-        }
-      });
-
-      // 动态生成按钮
-      for (var i = 35; i <= 49; i++) {
-        var button = document.createElement("button");
-        button.className = "btn btn-outline-primary";
-        button.textContent = i;
-        sizeButtonsContainer.appendChild(button);
+    categoriesDropdown.addEventListener("click", function () {
+      if (checkboxContainer.classList.contains("hidden")) {
+        checkboxContainer.classList.remove("hidden");
+        categoriesDropdown.classList.remove("fa-caret-down");
+        categoriesDropdown.classList.add("fa-caret-up");
+      } else {
+        checkboxContainer.classList.add("hidden");
+        categoriesDropdown.classList.remove("fa-caret-up");
+        categoriesDropdown.classList.add("fa-caret-down");
       }
-    </script>
-  </body>
+    });
+
+    // 动态生成按钮
+    for (var i = 35; i <= 49; i++) {
+      var button = document.createElement("button");
+      button.className = "btn btn-outline-primary";
+      button.textContent = i;
+      sizeButtonsContainer.appendChild(button);
+    }
+
+    // 添加 Size 按钮点击事件
+    var sizeFilterButton = document.getElementById("sizeFilterButton");
+    sizeFilterButton.addEventListener("click", filterBySize);
+  </script>
+</body>
 </html>
