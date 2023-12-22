@@ -115,14 +115,11 @@
     // 动态生成按钮
     for (var i = 35; i <= 49; i++) {
       var button = document.createElement("button");
-      button.className = "btn btn-outline-primary";
+      button.className = "btn btn-outline-primary size-btn"; // 添加 size-btn 类
       button.textContent = i;
       sizeButtonsContainer.appendChild(button);
-    }
 
-    // 添加 Size 按钮点击事件
-    var sizeFilterButton = document.getElementById("sizeFilterButton");
-    sizeFilterButton.addEventListener("click", filterBySize);
+    }
   </script>
 </body>
 </html>

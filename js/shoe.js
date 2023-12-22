@@ -1,10 +1,11 @@
 // shoe.js
 
 // 模拟一些鞋子的数据
+var selectedSizes = [];
 var shoes = [
-  { name: "Shoe 1", price: 99.99, size: 9, category: "Sneakers", brand: "Nike", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png" },
-  { name: "Shoe 2", price: 79.99, size: 8, category: "Casual", brand: "Adidas", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png" },
-  { name: "Shoe 3", price: 129.99, size: 10, category: "Formal", brand: "Puma", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png" },
+  { name: "Shoe 1", price: 99.99, size: 35, category: "Sneakers", brand: "Nike", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png" },
+  { name: "Shoe 2", price: 79.99, size: 36, category: "Casual", brand: "Adidas", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png" },
+  { name: "Shoe 3", price: 129.99, size: 37, category: "Formal", brand: "Puma", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png" },
   // 添加更多鞋子的数据...
 ];
 
@@ -48,24 +49,27 @@ function displayShoes(shoes) {
 
   // 遍历鞋子数据，创建卡片并添加到容器中
   shoes.forEach(function (shoe) {
-    var cardHtml = `
-      <div class="col-md-6 mb-3">
-        <div class="card">
-          <img src="${shoe.imagePath}" class="card-img-top" alt="${shoe.name}">
-          <div class="card-body">
-            <h5 class="card-title">${shoe.name}</h5>
-            <p class="card-text">
-              <strong>Category:</strong> ${shoe.category}<br>
-              <strong>Brand:</strong> ${shoe.brand}<br>
-              <strong>Price:</strong> $${shoe.price.toFixed(2)}<br>
-              <strong>Size:</strong> ${shoe.size}
-            </p>
+    // 如果尺码被筛选，则显示对应尺码的鞋子
+    if (selectedSizes.length === 0 || selectedSizes.includes(shoe.size)) {
+      var cardHtml = `
+        <div class="col-md-6 mb-3">
+          <div class="card">
+            <img src="${shoe.imagePath}" class="card-img-top" alt="${shoe.name}">
+            <div class="card-body">
+              <h5 class="card-title">${shoe.name}</h5>
+              <p class="card-text">
+                <strong>Category:</strong> ${shoe.category}<br>
+                <strong>Brand:</strong> ${shoe.brand}<br>
+                <strong>Price:</strong> $${shoe.price.toFixed(2)}<br>
+                <strong>Size:</strong> ${shoe.size}
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-    `;
+      `;
 
-    shoesContainer.innerHTML += cardHtml;
+      shoesContainer.innerHTML += cardHtml;
+    }
   });
 }
 
@@ -88,6 +92,37 @@ function filterByPriceRange() {
     displayShoes(filteredShoes);
   }
 }
+
+// 监听 sizeButtonsContainer 内部的按钮点击事件
+sizeButtonsContainer.addEventListener("click", function (event) {
+  // 检查点击的是否是尺码按钮
+  if (event.target.classList.contains("btn") && event.target.classList.contains("btn-outline-primary")) {
+    // 切换按钮的样式，保持激活状态
+    event.target.classList.toggle("active");
+
+    // 获取点击的尺码
+    var selectedSize = parseInt(event.target.textContent, 10);
+
+    // 在数组中存储选中的尺码
+    if (!selectedSizes.includes(selectedSize)) {
+      selectedSizes.push(selectedSize);
+    } else {
+      // 如果已经选中，则取消选择
+      selectedSizes = selectedSizes.filter(size => size !== selectedSize);
+    }
+
+    // 根据选中的尺码筛选鞋子
+    var filteredShoes = shoes.filter(function (shoe) {
+      return selectedSizes.length === 0 || selectedSizes.includes(shoe.size);
+    });
+
+    // 更新展示鞋子的网格
+    displayShoes(filteredShoes);
+  }
+});
+
+
+
 
 // 监听价格区间输入框失去焦点的事件
 document.getElementById("minPrice").addEventListener("blur", filterByPriceRange);
