@@ -1,0 +1,77 @@
+/* styles.css */
+
+.custom-search .form-control {
+    width: 500px;
+  }
+  
+  .border-secondary {
+    border-color: lightgray !important;
+  }
+  
+  .col-md-2::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background-color: lightgray;
+    left: 0;
+  }
+  
+  .col-md-2,
+  .col-md-10 {
+    height: 100%;
+  }
+  
+  /* 左下方区域位置 */
+  .row {
+    margin-left: -75px;
+  }
+  
+  header {
+    border-bottom: 1px solid lightgray;
+  }
+  
+  .fa-caret-down,
+  .fa-caret-up {
+    cursor: pointer;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  /* 调整图标的样式，使其垂直居中 */
+  .icon-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  /* 调整多选框的样式 */
+  .checkbox-container {
+    margin-top: 10px;
+  }
+  
+  /* 调整输入框大小 */
+  #minPrice,
+  #maxPrice {
+    width: 80px;
+  }
+  
+  .size-buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+    margin-top: 20px;
+  }
+  
+  /* 添加样式定义浅灰色分割线 */
+  .header-divider {
+    border-color: lightgray;
+    margin: 0; /* 修复默认 margin 导致分割线不居中的问题 */
+  }
+  
+  .icon-container {
+    margin: 20px;
+  }
+  
