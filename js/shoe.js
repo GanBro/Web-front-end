@@ -9,6 +9,25 @@ var shoes = [
   // 添加更多鞋子的数据...
 ];
 
+var checkboxContainer = document.getElementById("checkboxContainer");
+
+// 根据鞋子数据动态生成 checkbox 选项
+for (var i = 0; i < shoes.length; i++) {
+  var checkbox = document.createElement("input");
+  checkbox.type = "checkbox";
+  checkbox.id = "checkbox" + (i + 1);
+
+  var label = document.createElement("label");
+  label.htmlFor = "checkbox" + (i + 1);
+  label.innerHTML = shoes[i].category;
+
+  var br = document.createElement("br");
+
+  checkboxContainer.appendChild(checkbox);
+  checkboxContainer.appendChild(label);
+  checkboxContainer.appendChild(br);
+}
+
 // 显示鞋子的初始顺序
 displayShoes(shoes);
 
