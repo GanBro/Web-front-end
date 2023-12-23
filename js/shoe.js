@@ -97,19 +97,28 @@ function displayShoes(shoes) {
   });
 }
 
-// 统一筛选函数
+// 监听checkbox的点击事件
+checkboxContainer.addEventListener("click", filterShoes);
+
 function filterShoes() {
   var minPrice = parseFloat(minPriceInput.value);
   var maxPrice = parseFloat(maxPriceInput.value);
 
   var sortBy = selectCategory.value;
 
+  // 获取选中的类别
+  var selectedCategories = Array.from(checkboxContainer.querySelectorAll('input[type="checkbox"]:checked'))
+    .map(checkbox => checkbox.labels[0].textContent);
+
   // 使用数组的 filter 方法过滤鞋子
   var filteredShoes = shoes.filter(function (shoe) {
     var sizeFilter = selectedSizes.length === 0 || selectedSizes.includes(shoe.size);
     var priceFilter = isNaN(minPrice) || isNaN(maxPrice) || (shoe.price >= minPrice && shoe.price <= maxPrice);
 
-    return sizeFilter && priceFilter;
+    // 新增：检查鞋子的类别是否在选中的类别中
+    var categoryFilter = selectedCategories.length === 0 || selectedCategories.includes(shoe.category);
+
+    return sizeFilter && priceFilter && categoryFilter;
   });
 
   // 根据选择的排序方式调整鞋子的顺序
@@ -134,6 +143,8 @@ function filterShoes() {
   // 更新展示鞋子的网格
   displayShoes(filteredShoes);
 }
+
+
 
 // 添加价格区间筛选函数
 function filterByPriceRange() {
