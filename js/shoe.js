@@ -13,34 +13,39 @@ var shoes = [
 displayShoes(shoes);
 
 var selectCategory = document.getElementById("selectCategory");
+var sizeButtonsContainer = document.getElementById("sizeButtonsContainer");
+var minPriceInput = document.getElementById("minPrice");
+var maxPriceInput = document.getElementById("maxPrice");
 
 // 监听下拉框的变化事件
-selectCategory.addEventListener("change", function () {
-  // 获取当前选择的排序方式
-  var sortBy = selectCategory.value;
+selectCategory.addEventListener("change", filterShoes);
 
-  // 根据选择的排序方式调整鞋子的顺序
-  if (sortBy === "Price") {
-    shoes.sort(function (a, b) {
-      return a.price - b.price;
-    });
-  } else if (sortBy === "Size") {
-    shoes.sort(function (a, b) {
-      return a.size - b.size;
-    });
-  } else if (sortBy === "Category") {
-    shoes.sort(function (a, b) {
-      return a.category.localeCompare(b.category);
-    });
-  } else if (sortBy === "Brand") {
-    shoes.sort(function (a, b) {
-      return a.brand.localeCompare(b.brand);
-    });
+// 监听 sizeButtonsContainer 内部的按钮点击事件
+sizeButtonsContainer.addEventListener("click", function (event) {
+  // 检查点击的是否是尺码按钮
+  if (event.target.classList.contains("size-btn")) {
+    // 切换按钮的样式，保持激活状态
+    event.target.classList.toggle("active");
+
+    // 获取点击的尺码
+    var selectedSize = parseInt(event.target.textContent, 10);
+
+    // 在数组中存储选中的尺码
+    if (!selectedSizes.includes(selectedSize)) {
+      selectedSizes.push(selectedSize);
+    } else {
+      // 如果已经选中，则取消选择
+      selectedSizes = selectedSizes.filter(size => size !== selectedSize);
+    }
+
+    // 根据选中的尺码筛选鞋子
+    filterShoes();
   }
-
-  // 更新展示鞋子的网格
-  displayShoes(shoes);
 });
+
+// 监听价格区间输入框失去焦点的事件
+minPriceInput.addEventListener("blur", filterByPriceRange);
+maxPriceInput.addEventListener("blur", filterByPriceRange);
 
 // 显示鞋子的函数
 function displayShoes(shoes) {
@@ -73,11 +78,46 @@ function displayShoes(shoes) {
   });
 }
 
+// 统一筛选函数
+function filterShoes() {
+  var minPrice = parseFloat(minPriceInput.value);
+  var maxPrice = parseFloat(maxPriceInput.value);
+
+  var sortBy = selectCategory.value;
+
+  // 使用数组的 filter 方法过滤鞋子
+  var filteredShoes = shoes.filter(function (shoe) {
+    var sizeFilter = selectedSizes.length === 0 || selectedSizes.includes(shoe.size);
+    var priceFilter = isNaN(minPrice) || isNaN(maxPrice) || (shoe.price >= minPrice && shoe.price <= maxPrice);
+
+    return sizeFilter && priceFilter;
+  });
+
+  // 根据选择的排序方式调整鞋子的顺序
+  if (sortBy === "Price") {
+    filteredShoes.sort(function (a, b) {
+      return a.price - b.price;
+    });
+  } else if (sortBy === "Size") {
+    filteredShoes.sort(function (a, b) {
+      return a.size - b.size;
+    });
+  } else if (sortBy === "Category") {
+    filteredShoes.sort(function (a, b) {
+      return a.category.localeCompare(b.category);
+    });
+  } else if (sortBy === "Brand") {
+    filteredShoes.sort(function (a, b) {
+      return a.brand.localeCompare(b.brand);
+    });
+  }
+
+  // 更新展示鞋子的网格
+  displayShoes(filteredShoes);
+}
+
 // 添加价格区间筛选函数
 function filterByPriceRange() {
-  var minPriceInput = document.getElementById("minPrice");
-  var maxPriceInput = document.getElementById("maxPrice");
-
   var minPrice = parseFloat(minPriceInput.value);
   var maxPrice = parseFloat(maxPriceInput.value);
 
@@ -92,38 +132,3 @@ function filterByPriceRange() {
     displayShoes(filteredShoes);
   }
 }
-
-// 监听 sizeButtonsContainer 内部的按钮点击事件
-sizeButtonsContainer.addEventListener("click", function (event) {
-  // 检查点击的是否是尺码按钮
-  if (event.target.classList.contains("btn") && event.target.classList.contains("btn-outline-primary")) {
-    // 切换按钮的样式，保持激活状态
-    event.target.classList.toggle("active");
-
-    // 获取点击的尺码
-    var selectedSize = parseInt(event.target.textContent, 10);
-
-    // 在数组中存储选中的尺码
-    if (!selectedSizes.includes(selectedSize)) {
-      selectedSizes.push(selectedSize);
-    } else {
-      // 如果已经选中，则取消选择
-      selectedSizes = selectedSizes.filter(size => size !== selectedSize);
-    }
-
-    // 根据选中的尺码筛选鞋子
-    var filteredShoes = shoes.filter(function (shoe) {
-      return selectedSizes.length === 0 || selectedSizes.includes(shoe.size);
-    });
-
-    // 更新展示鞋子的网格
-    displayShoes(filteredShoes);
-  }
-});
-
-
-
-
-// 监听价格区间输入框失去焦点的事件
-document.getElementById("minPrice").addEventListener("blur", filterByPriceRange);
-document.getElementById("maxPrice").addEventListener("blur", filterByPriceRange);
