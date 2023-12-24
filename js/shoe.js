@@ -137,15 +137,17 @@ form.addEventListener('submit', function(event) {
 
 var checkboxContainer = document.getElementById("checkboxContainer");
 
-// 根据鞋子数据动态生成 checkbox 选项
-for (var i = 0; i < shoes.length; i++) {
+// 根据鞋子数据动态生成按字典序排序且去重的 checkbox 选项
+var uniqueCategories = Array.from(new Set(shoes.map(shoe => shoe.category))).sort();
+
+for (var i = 0; i < uniqueCategories.length; i++) {
   var checkbox = document.createElement("input");
   checkbox.type = "checkbox";
   checkbox.id = "checkbox" + (i + 1);
 
   var label = document.createElement("label");
   label.htmlFor = "checkbox" + (i + 1);
-  label.innerHTML = shoes[i].category;
+  label.innerHTML = uniqueCategories[i];
 
   var br = document.createElement("br");
 
