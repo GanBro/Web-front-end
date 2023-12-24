@@ -74,4 +74,21 @@
   .icon-container {
     margin: 20px;
   }
+
+  #pagination-container {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .page-btn {
+    margin: 0 5px;
+  }
+
+  /* 点击分页按钮时显示蓝色 */
+  .page-btn.active {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  
   

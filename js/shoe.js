@@ -22,10 +22,109 @@ var shoes = [
   { name: "Shoe 17", price: 109.99, size: 39, category: "Basketball", brand: "Nike", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png" },
   { name: "Shoe 18", price: 179.99, size: 40, category: "Formal", brand: "Allen Edmonds", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png" },
   { name: "Shoe 19", price: 149.99, size: 41, category: "Sneakers", brand: "Reebok", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png" },
-  { name: "Shoe 20", price: 129.99, size: 42, category: "Casual", brand: "Clarks", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png" }
+  // { name: "Shoe 20", price: 129.99, size: 42, category: "Casual", brand: "Clarks", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png" }
 ];
 
+var shoesPerPage = 4;
+var currentPage = 1;
 
+function initializePagination() {
+  var totalPages = Math.ceil(shoes.length / shoesPerPage);
+  generatePaginationButtons(totalPages);
+  displayShoesByPage(currentPage); // 显示初始界面
+}
+
+initializePagination();
+
+function generatePaginationButtons(totalPages) {
+  var paginationContainer = document.getElementById("pagination-container");
+  paginationContainer.innerHTML = "";
+
+  // 添加上一页按钮
+  var prevButton = document.createElement("button");
+  prevButton.textContent = "上一页";
+  prevButton.className = "btn btn-outline-secondary page-btn";
+  prevButton.addEventListener("click", function () {
+    if (currentPage > 1) {
+      currentPage--;
+      displayShoesByPage(currentPage);
+      updatePaginationButtons(totalPages); // 更新按钮状态
+    }
+  });
+  paginationContainer.appendChild(prevButton);
+
+  // 添加页码按钮
+  for (var i = 1; i <= totalPages; i++) {
+    var button = document.createElement("button");
+    button.textContent = i;
+    button.className = "btn btn-outline-secondary page-btn";
+
+    button.addEventListener("click", function (event) {
+      currentPage = parseInt(event.target.textContent);
+      displayShoesByPage(currentPage);
+      updatePaginationButtons(totalPages); // 更新按钮状态
+    });
+
+    paginationContainer.appendChild(button);
+  }
+
+  // 添加下一页按钮
+  var nextButton = document.createElement("button");
+  nextButton.textContent = "下一页";
+  nextButton.className = "btn btn-outline-secondary page-btn";
+  nextButton.addEventListener("click", function () {
+    if (currentPage < totalPages) {
+      currentPage++;
+      displayShoesByPage(currentPage);
+      updatePaginationButtons(totalPages); // 更新按钮状态
+    }
+  });
+  paginationContainer.appendChild(nextButton);
+
+  // 初始化时更新按钮状态
+  updatePaginationButtons(totalPages);
+}
+
+function updatePaginationButtons(totalPages) {
+  var buttons = document.getElementById("pagination-container").querySelectorAll("button.page-btn");
+
+  // 移除所有按钮的高亮
+  buttons.forEach(function (button) {
+    button.classList.remove("active");
+  });
+
+  // 高亮显示当前页码按钮
+  buttons.forEach(function (button) {
+    if (parseInt(button.textContent) === currentPage) {
+      button.classList.add("active");
+    }
+  });
+
+  // 禁用或启用上一页和下一页按钮
+  var prevButton = document.getElementById("pagination-container").querySelector("button");
+  var nextButton = document.getElementById("pagination-container").querySelectorAll("button")[totalPages + 1];
+
+  // 禁用或启用上一页按钮
+  if (currentPage === 1) {
+    prevButton.disabled = true;
+  } else {
+    prevButton.disabled = false;
+  }
+
+  // 禁用或启用下一页按钮
+  if (currentPage === totalPages) {
+    nextButton.disabled = true;
+  } else {
+    nextButton.disabled = false;
+  }
+}
+
+function displayShoesByPage(pageNumber) {
+  var startIndex = (pageNumber - 1) * shoesPerPage;
+  var endIndex = startIndex + shoesPerPage;
+  var currentShoes = shoes.slice(startIndex, endIndex);
+  displayShoes(currentShoes);
+}
 
 // 搜索框监听
 const form = document.getElementById('search-form');
@@ -54,9 +153,6 @@ for (var i = 0; i < shoes.length; i++) {
   checkboxContainer.appendChild(label);
   checkboxContainer.appendChild(br);
 }
-
-// 显示鞋子的初始顺序
-displayShoes(shoes);
 
 var selectCategory = document.getElementById("selectCategory");
 var sizeButtonsContainer = document.getElementById("sizeButtonsContainer");
