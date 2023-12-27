@@ -367,6 +367,7 @@ function filterByPriceRange() {
     });
 
     // 更新展示鞋子的网格
-    displayShoes(filteredShoes);
+    // displayShoes(filteredShoes);
+    filterShoes()
   }
 }
