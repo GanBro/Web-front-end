@@ -24,6 +24,7 @@ var shoes = [
   { name: "Shoe 19", price: 149.99, size: 41, category: "Sneakers", brand: "Reebok", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png" },
   // { name: "Shoe 20", price: 129.99, size: 42, category: "Casual", brand: "Clarks", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png" }
 ];
+var searchTerm; // 搜索内容
 
 var shoesPerPage = 4;
 var currentPage = 1;
@@ -126,8 +127,20 @@ function displayShoesByPage(pageNumber) {
   displayShoes(currentShoes);
 }
 
-// 搜索框监听
+
+// 获取输入框元素
+var searchInput = document.querySelector('input[type="text"]');
+
+// 在线监听输入事件
+searchInput.addEventListener('input', function(event) {
+  searchTerm = event.target.value;
+  event.preventDefault(); // 阻止表单提交
+  filterShoes(); // 调用筛选函数
+});
+
+// 搜索按钮监听
 const form = document.getElementById('search-form');
+searchTerm = form.querySelector('input[type=text]');;
 
 form.addEventListener('submit', function(event) {
   event.preventDefault(); // 阻止表单提交
@@ -227,8 +240,9 @@ checkboxContainer.addEventListener("click", filterShoes);
 
 // 筛选鞋子
 function filterShoes() {
-  const input = form.querySelector('input[type=text]');
-  const value = input.value.trim().toLowerCase(); // 获取搜索内容（转成小写并去掉首尾空格）
+  // const input = form.querySelector('input[type=text]');
+  // const value = input.value.trim().toLowerCase(); // 获取搜索内容（转成小写并去掉首尾空格）
+  const value = searchTerm.trim().toLowerCase();
 
   var minPrice = parseFloat(minPriceInput.value);
   var maxPrice = parseFloat(maxPriceInput.value);
@@ -246,7 +260,7 @@ function filterShoes() {
     var categoryFilter = selectedCategories.length === 0 || selectedCategories.includes(shoe.category);
     
     // 根据搜索内容筛选
-    var searchFilter = value === '' || 
+    var searchFilter = searchTerm === '' || 
       shoe.name.toLowerCase().includes(value) ||
       shoe.brand.toLowerCase().includes(value) ||
       shoe.category.toLowerCase().includes(value);
