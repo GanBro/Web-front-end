@@ -51,15 +51,15 @@ window.closeModal = function () {
   modal.style.display = "none";
 };
 
-function initializePagination() {
+function initializePagination(shoes) {
   var totalPages = Math.ceil(shoes.length / shoesPerPage);
-  generatePaginationButtons(totalPages);
-  displayShoesByPage(currentPage); // 显示初始界面
+  generatePaginationButtons(totalPages, shoes);
+  displayShoesByPage(currentPage, shoes); // 显示初始界面
 }
 
-initializePagination();
+initializePagination(shoes);
 
-function generatePaginationButtons(totalPages) {
+function generatePaginationButtons(totalPages, shoes) {
   var paginationContainer = document.getElementById("pagination-container");
   paginationContainer.innerHTML = "";
 
@@ -70,7 +70,7 @@ function generatePaginationButtons(totalPages) {
   prevButton.addEventListener("click", function () {
     if (currentPage > 1) {
       currentPage--;
-      displayShoesByPage(currentPage);
+      displayShoesByPage(currentPage, shoes);
       updatePaginationButtons(totalPages); // 更新按钮状态
     }
   });
@@ -84,7 +84,7 @@ function generatePaginationButtons(totalPages) {
 
     button.addEventListener("click", function (event) {
       currentPage = parseInt(event.target.textContent);
-      displayShoesByPage(currentPage);
+      displayShoesByPage(currentPage, shoes);
       updatePaginationButtons(totalPages); // 更新按钮状态
     });
 
@@ -98,7 +98,7 @@ function generatePaginationButtons(totalPages) {
   nextButton.addEventListener("click", function () {
     if (currentPage < totalPages) {
       currentPage++;
-      displayShoesByPage(currentPage);
+      displayShoesByPage(currentPage, shoes);
       updatePaginationButtons(totalPages); // 更新按钮状态
     }
   });
@@ -142,7 +142,7 @@ function updatePaginationButtons(totalPages) {
   }
 }
 
-function displayShoesByPage(pageNumber) {
+function displayShoesByPage(pageNumber, shoes) {
   var startIndex = (pageNumber - 1) * shoesPerPage;
   var endIndex = startIndex + shoesPerPage;
   var currentShoes = shoes.slice(startIndex, endIndex);
@@ -303,8 +303,6 @@ checkboxContainer.addEventListener("click", filterShoes);
 
 // 筛选鞋子
 function filterShoes() {
-  // const input = form.querySelector('input[type=text]');
-  // const value = input.value.trim().toLowerCase(); // 获取搜索内容（转成小写并去掉首尾空格）
   const value = searchTerm.trim().toLowerCase();
 
   var minPrice = parseFloat(minPriceInput.value);
@@ -351,7 +349,8 @@ function filterShoes() {
   }
 
   // 更新展示鞋子的网格
-  displayShoes(filteredShoes);
+  // displayShoes(filteredShoes);
+  initializePagination(filteredShoes);
 }
 
 // 添加价格区间筛选函数
