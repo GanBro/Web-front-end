@@ -5,123 +5,157 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bootstrap Example</title>
     <link href="./css/bootstrap.css" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      rel="stylesheet"
+    />
     <link href="./css/styles.css" rel="stylesheet" />
     <script type="module" src="./js/shoe.js"></script>
   </head>
-<body>
-  <div id="header-container">
-    <header>
-      <div class="bg-light py-3">
-        <div class="container d-flex justify-content-between align-items-center">
-          <a class="navbar-brand" href="#" style="font-size: 24px">Shoe.</a>
-          <form class="d-flex custom-search" id="search-form">
-            <div class="input-group">
-              <button class="btn btn-outline-primary" type="submit">
-                <i class="fas fa-search search-icon"></i>
-              </button>
-              <input
-                type="text"
-                class="form-control"
-                placeholder="可搜索Name/Category/Brand"
-                aria-label="Search"
-              />
-            </div>
-          </form>
-        </div>
-      </div>
-      <hr class="header-divider" /> <!-- 添加浅灰色分割线 -->
-    </header>
-  </div>
-
-  <div class="container">
-    <div class="row">
-      <!-- 左边 -->
-      <div class="col-md-3 border-end border-secondary">
-        <div class="row">
-          <div class="col-md-12 border-bottom border-secondary">
-            <br />
-            <br />
-            <br />
+  <body>
+    <div id="header-container">
+      <header>
+        <div class="bg-light py-3">
+          <div
+            class="container d-flex justify-content-between align-items-center"
+          >
+            <a class="navbar-brand" href="#" style="font-size: 24px">Shoe.</a>
+            <form class="d-flex custom-search" id="search-form">
+              <div class="input-group">
+                <button class="btn btn-outline-primary" type="submit">
+                  <i class="fas fa-search search-icon"></i>
+                </button>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="可搜索Name/Category/Brand"
+                  aria-label="Search"
+                />
+              </div>
+            </form>
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-12 border-bottom border-secondary">
-            <div class="icon-container" style="margin: 10px">
-              Categories
-              <i class="fas fa-caret-down" id="categoriesDropdown"></i>
-            </div>
-            <div class="checkbox-container hidden" id="checkboxContainer" style="margin: 10px"></div>
-          </div>
-        </div>
+        <hr class="header-divider" />
+        <!-- 添加浅灰色分割线 -->
+      </header>
+    </div>
 
-        <div class="row">
-          <div class="col-md-12 border-bottom border-secondary">
-            <div class="form-group d-flex align-items-center" style="margin: 10px">
-              <label for="priceRange" class="mr-2">价格区间：</label>
-              <input type="text" class="form-control mr-2" id="minPrice" placeholder="最低价" />
-              <span class="mr-2">~</span>
-              <input type="text" class="form-control mr-2" id="maxPrice" placeholder="最高价" />
+    <div class="container">
+      <div class="row">
+        <!-- 左边 -->
+        <div class="col-md-3 border-end border-secondary">
+          <div class="row">
+            <div class="col-md-12 border-bottom border-secondary">
+              <br />
+              <br />
+              <br />
             </div>
           </div>
-        </div>
+          <div class="row">
+            <div class="col-md-12 border-bottom border-secondary">
+              <div class="icon-container" style="margin: 10px">
+                Categories
+                <i class="fas fa-caret-down" id="categoriesDropdown"></i>
+              </div>
+              <div
+                class="checkbox-container hidden"
+                id="checkboxContainer"
+                style="margin: 10px"
+              ></div>
+            </div>
+          </div>
 
-        <div class="row">
-          <div class="col-md-12" style="margin: 10px">Size</div>
-          <div class="size-buttons" id="sizeButtonsContainer">
-            <!-- 添加按钮 -->
+          <div class="row">
+            <div class="col-md-12 border-bottom border-secondary">
+              <div
+                class="form-group d-flex align-items-center"
+                style="margin: 10px"
+              >
+                <label for="priceRange" class="mr-2">价格区间：</label>
+                <input
+                  type="text"
+                  class="form-control mr-2"
+                  id="minPrice"
+                  placeholder="最低价"
+                />
+                <span class="mr-2">~</span>
+                <input
+                  type="text"
+                  class="form-control mr-2"
+                  id="maxPrice"
+                  placeholder="最高价"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12" style="margin: 10px">Size</div>
+            <div class="size-buttons" id="sizeButtonsContainer">
+              <!-- 添加按钮 -->
+            </div>
           </div>
         </div>
-      </div>
-      <!-- 右边 9 + 3 = 12 -->
-      <div class="col-md-9">
-        <div class="d-flex align-items-center justify-content-between mb-3" style="margin: 10px">
-          <h2 class="mb-0">ShoeLists</h2>
-          <select id="selectCategory" class="form-select w-25">
-            <option value="space" disabled selected>请选择您的排序方式</option>
-            <option value="Price">Sort By Price</option>
-            <option value="Size">Sort By Size</option>
-            <option value="Category">Sort By Category</option>
-            <option value="Brand">Sort By Brand</option>
-          </select>
+        <!-- 右边 9 + 3 = 12 -->
+        <div class="col-md-9">
+          <div
+            class="d-flex align-items-center justify-content-between mb-3"
+            style="margin: 10px"
+          >
+            <h2 class="mb-0">ShoeLists</h2>
+            <select id="selectCategory" class="form-select w-25">
+              <option value="space" disabled selected>
+                请选择您的排序方式
+              </option>
+              <option value="Price">Sort By Price</option>
+              <option value="Size">Sort By Size</option>
+              <option value="Category">Sort By Category</option>
+              <option value="Brand">Sort By Brand</option>
+            </select>
+          </div>
+
+          <!-- 展示鞋的网格 -->
+          <div class="row" style="margin: 0" id="shoesContainer"></div>
         </div>
-
-        <!-- 展示鞋的网格 -->
-        <div class="row" style="margin: 0" id="shoesContainer"></div>
-
       </div>
     </div>
-  </div>
 
-  <div id="pagination-container" class="mt-4">
-    <!-- 分页按钮将会显示在这里 -->
-  </div>
+    <!-- 模态框结构 -->
+    <div id="myModal" class="modal">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <img class="modal-content" id="modalImg" alt="Enlarged Image" />
+    </div>
 
-  <script>
-    var categoriesDropdown = document.getElementById("categoriesDropdown");
-    var checkboxContainer = document.getElementById("checkboxContainer");
-    var sizeButtonsContainer = document.getElementById("sizeButtonsContainer");
+    <div id="pagination-container" class="mt-4">
+      <!-- 分页按钮将会显示在这里 -->
+    </div>
 
-    categoriesDropdown.addEventListener("click", function () {
-      if (checkboxContainer.classList.contains("hidden")) {
-        checkboxContainer.classList.remove("hidden");
-        categoriesDropdown.classList.remove("fa-caret-down");
-        categoriesDropdown.classList.add("fa-caret-up");
-      } else {
-        checkboxContainer.classList.add("hidden");
-        categoriesDropdown.classList.remove("fa-caret-up");
-        categoriesDropdown.classList.add("fa-caret-down");
+    <script>
+      var categoriesDropdown = document.getElementById("categoriesDropdown");
+      var checkboxContainer = document.getElementById("checkboxContainer");
+      var sizeButtonsContainer = document.getElementById(
+        "sizeButtonsContainer"
+      );
+
+      categoriesDropdown.addEventListener("click", function () {
+        if (checkboxContainer.classList.contains("hidden")) {
+          checkboxContainer.classList.remove("hidden");
+          categoriesDropdown.classList.remove("fa-caret-down");
+          categoriesDropdown.classList.add("fa-caret-up");
+        } else {
+          checkboxContainer.classList.add("hidden");
+          categoriesDropdown.classList.remove("fa-caret-up");
+          categoriesDropdown.classList.add("fa-caret-down");
+        }
+      });
+
+      // 动态生成按钮
+      for (var i = 35; i <= 49; i++) {
+        var button = document.createElement("button");
+        button.className = "btn btn-outline-primary size-btn"; // 添加 size-btn 类
+        button.textContent = i;
+        sizeButtonsContainer.appendChild(button);
       }
-    });
-
-    // 动态生成按钮
-    for (var i = 35; i <= 49; i++) {
-      var button = document.createElement("button");
-      button.className = "btn btn-outline-primary size-btn"; // 添加 size-btn 类
-      button.textContent = i;
-      sizeButtonsContainer.appendChild(button);
-
-    }
-  </script>
-</body>
+    </script>
+  </body>
 </html>

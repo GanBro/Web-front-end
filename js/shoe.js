@@ -1,33 +1,51 @@
 // shoe.js
 
 // 模拟一些鞋子的数据
-var selectedSizes = [];
 var shoes = [
-  { name: "Shoe 1", price: 99.99, size: 35, category: "Basketball", brand: "Under Armour", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png" },
-  { name: "Shoe 2", price: 79.99, size: 36, category: "Running", brand: "New Balance", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png" },
-  { name: "Shoe 3", price: 129.99, size: 37, category: "Formal", brand: "Cole Haan", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png" },
-  { name: "Shoe 4", price: 89.99, size: 38, category: "Sneakers", brand: "Fila", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png" },
-  { name: "Shoe 5", price: 69.99, size: 39, category: "Hiking", brand: "Merrell", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png" },
-  { name: "Shoe 6", price: 119.99, size: 40, category: "Casual", brand: "Sperry", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png" },
-  { name: "Shoe 7", price: 99.99, size: 41, category: "Skateboarding", brand: "Vans", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png" },
-  { name: "Shoe 8", price: 79.99, size: 42, category: "Tennis", brand: "Asics", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png" },
-  { name: "Shoe 9", price: 139.99, size: 43, category: "Formal", brand: "Johnston & Murphy", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png" },
-  { name: "Shoe 10", price: 109.99, size: 44, category: "Sneakers", brand: "Puma", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png" },
-  { name: "Shoe 11", price: 89.99, size: 45, category: "Running", brand: "Under Armour", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png" },
-  { name: "Shoe 12", price: 149.99, size: 46, category: "Formal", brand: "Stacy Adams", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png" },
-  { name: "Shoe 13", price: 119.99, size: 35, category: "Skateboarding", brand: "DC Shoes", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png" },
-  { name: "Shoe 14", price: 99.99, size: 36, category: "Hiking", brand: "KEEN", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png" },
-  { name: "Shoe 15", price: 159.99, size: 37, category: "Formal", brand: "ECCO", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png" },
-  { name: "Shoe 16", price: 129.99, size: 38, category: "Sneakers", brand: "Fila", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png" },
-  { name: "Shoe 17", price: 109.99, size: 39, category: "Basketball", brand: "Nike", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png" },
-  { name: "Shoe 18", price: 179.99, size: 40, category: "Formal", brand: "Allen Edmonds", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png" },
-  { name: "Shoe 19", price: 149.99, size: 41, category: "Sneakers", brand: "Reebok", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png" },
-  // { name: "Shoe 20", price: 129.99, size: 42, category: "Casual", brand: "Clarks", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png" }
+  { name: "Shoe 1", price: 99.99, size: 35, category: "Basketball", brand: "Under Armour", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png", smallImages: ["./imgs/Nike Kyrie 6 CNY EP.png","./imgs/Nike Kyrie 6 CNY EP.png","./imgs/Nike Kyrie 6 CNY EP.png","./imgs/Nike Kyrie 6 CNY EP.png","./imgs/Nike Kyrie 6 CNY EP.png"] },
+  { name: "Shoe 2", price: 79.99, size: 36, category: "Running", brand: "New Balance", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png", smallImages: ["./imgs/Nike Kyrie 6 CNY EP.png"] },
+  { name: "Shoe 3", price: 129.99, size: 37, category: "Formal", brand: "Cole Haan", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png", smallImages: ["./imgs/Nike Kyrie 6 CNY EP.png"] },
+  { name: "Shoe 4", price: 89.99, size: 38, category: "Sneakers", brand: "Fila", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png", smallImages: ["./imgs/Nike Kyrie 6 CNY EP.png"] },
+  { name: "Shoe 5", price: 69.99, size: 39, category: "Hiking", brand: "Merrell", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png", smallImages: ["./imgs/Nike Kyrie 6 CNY EP.png"] },
+  { name: "Shoe 6", price: 119.99, size: 40, category: "Casual", brand: "Sperry", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png", smallImages: ["./imgs/Nike Kyrie 6 CNY EP.png"] },
+  { name: "Shoe 7", price: 99.99, size: 41, category: "Skateboarding", brand: "Vans", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png", smallImages: ["./imgs/Nike Kyrie 6 CNY EP.png"] },
+  { name: "Shoe 8", price: 79.99, size: 42, category: "Tennis", brand: "Asics", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png", smallImages: ["./imgs/Nike Kyrie 6 CNY EP.png"] },
+  { name: "Shoe 9", price: 139.99, size: 43, category: "Formal", brand: "Johnston & Murphy", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png", smallImages: ["./imgs/Nike Kyrie 6 CNY EP.png"] },
+  { name: "Shoe 10", price: 109.99, size: 44, category: "Sneakers", brand: "Puma", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png", smallImages: ["./imgs/Nike Kyrie 6 CNY EP.png"] },
+  { name: "Shoe 11", price: 89.99, size: 45, category: "Running", brand: "Under Armour", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png", smallImages: ["./imgs/Nike Kyrie 6 CNY EP.png"] },
+  { name: "Shoe 12", price: 149.99, size: 46, category: "Formal", brand: "Stacy Adams", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png", smallImages: ["./imgs/Nike Kyrie 6 CNY EP.png"] },
+  { name: "Shoe 13", price: 119.99, size: 35, category: "Skateboarding", brand: "DC Shoes", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png", smallImages: ["./imgs/Nike Kyrie 6 CNY EP.png"] },
+  { name: "Shoe 14", price: 99.99, size: 36, category: "Hiking", brand: "KEEN", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png", smallImages: ["./imgs/Nike Kyrie 6 CNY EP.png"] },
+  { name: "Shoe 15", price: 159.99, size: 37, category: "Formal", brand: "ECCO", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png", smallImages: ["./imgs/Nike Kyrie 6 CNY EP.png"] },
+  { name: "Shoe 16", price: 129.99, size: 38, category: "Sneakers", brand: "Fila", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png", smallImages: ["./imgs/Nike Kyrie 6 CNY EP.png"] },
+  { name: "Shoe 17", price: 109.99, size: 39, category: "Basketball", brand: "Nike", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png", smallImages: ["./imgs/Nike Kyrie 6 CNY EP.png"] },
+  { name: "Shoe 18", price: 179.99, size: 40, category: "Formal", brand: "Allen Edmonds", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png", smallImages: ["./imgs/Nike Kyrie 6 CNY EP.png"] },
+  { name: "Shoe 19", price: 149.99, size: 41, category: "Sneakers", brand: "Reebok", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png", smallImages: ["./imgs/Nike Kyrie 6 CNY EP.png"] },
+  // { name: "Shoe 20", price: 129.99, size: 42, category: "Casual", brand: "Clarks", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png", smallImages: ["./imgs/Nike Kyrie 6 CNY EP.png"] }
 ];
+var selectedSizes = [];
 var searchTerm; // 搜索内容
-
 var shoesPerPage = 4;
 var currentPage = 1;
+
+// 在全局范围定义 openModal 函数
+function openModal(imagePath) {
+  var modal = document.getElementById("myModal");
+  var modalImg = document.getElementById("modalImg");
+
+  modal.style.display = "block";
+  modalImg.src = imagePath;
+
+  setModalClickListener();
+}
+
+// 在全局范围定义 closeModal 函数
+function closeModal() {
+  var modal = document.getElementById("myModal");
+  modal.style.display = "none";
+
+  setModalClickListener();
+}
 
 function initializePagination() {
   var totalPages = Math.ceil(shoes.length / shoesPerPage);
@@ -127,25 +145,26 @@ function displayShoesByPage(pageNumber) {
   displayShoes(currentShoes);
 }
 
-
 // 获取输入框元素
 var searchInput = document.querySelector('input[type="text"]');
 
-// 在线监听输入事件
+// 在监听输入框的输入事件时，不需要调用 preventDefault
 searchInput.addEventListener('input', function(event) {
   searchTerm = event.target.value;
-  event.preventDefault(); // 阻止表单提交
   filterShoes(); // 调用筛选函数
 });
 
 // 搜索按钮监听
 const form = document.getElementById('search-form');
-searchTerm = form.querySelector('input[type=text]');;
+// 这里应该是从 form 中获取 input 元素，而不是直接赋值给 searchTerm
+var searchInputInForm = form.querySelector('input[type=text]');
 
 form.addEventListener('submit', function(event) {
   event.preventDefault(); // 阻止表单提交
+  searchTerm = searchInputInForm.value; // 从 input 元素中获取值
   filterShoes(); // 调用筛选函数
 });
+
 
 
 var checkboxContainer = document.getElementById("checkboxContainer");
@@ -219,6 +238,9 @@ function displayShoes(shoes) {
             <img src="${shoe.imagePath}" class="card-img-top" alt="${shoe.name}">
             <div class="card-body">
               <h5 class="card-title">${shoe.name}</h5>
+              <div class="small-images-container">
+                ${generateSmallImages(shoe)}
+              </div>
               <p class="card-text">
                 <strong>Category:</strong> ${shoe.category}<br>
                 <strong>Brand:</strong> ${shoe.brand}<br>
@@ -233,7 +255,46 @@ function displayShoes(shoes) {
       shoesContainer.innerHTML += cardHtml;
     }
   });
+
+  // 绑定小图片点击事件
+  var smallImages = document.querySelectorAll(".small-image");
+  smallImages.forEach(function (smallImage, index) {
+    smallImage.addEventListener("click", function () {
+      openModal(shoes[index].imagePath);
+    });
+  });
 }
+// 生成小图片的函数
+function generateSmallImages(shoe) {
+  var smallImagesHtml = "";
+  shoe.smallImages.forEach(function (smallImage) {
+    smallImagesHtml += `<img src="${smallImage}" class="small-image" alt="${shoe.name}" onclick="openModal('${smallImage}')">`;
+  });
+  return smallImagesHtml;
+}
+
+// 打开模态框
+function openModal(imagePath) {
+  var modal = document.getElementById("myModal");
+  var modalImg = document.getElementById("modalImg");
+
+  modal.style.display = "block";
+  modalImg.src = imagePath;
+
+  // 点击模态框以外的区域关闭模态框
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  };
+}
+
+// 关闭模态框
+function closeModal() {
+  var modal = document.getElementById("myModal");
+  modal.style.display = "none";
+}
+
 
 // 监听checkbox的点击事件
 checkboxContainer.addEventListener("click", filterShoes);
