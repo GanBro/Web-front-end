@@ -162,7 +162,7 @@ searchInput.addEventListener('input', function(event) {
 
 // 搜索按钮监听
 const form = document.getElementById('search-form');
-searchTerm = form.querySelector('input[type=text]');;
+searchTerm = form.querySelector('input[type=text]').value;
 
 form.addEventListener('submit', function(event) {
   event.preventDefault(); // 阻止表单提交
