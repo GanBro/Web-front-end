@@ -173,6 +173,15 @@
   margin-top: 10px;
 }
 
+/* 添加样式定义 "Categories" 字样 */
+span {
+  font-weight: bold; /* 设置粗体字 */
+  font-size: 18px; /* 设置字体大小 */
+  color:black;
+  margin-right: 5px; /* 设置右边距 */
+}
+
+
 
 
 
