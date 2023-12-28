@@ -138,4 +138,42 @@
   max-width: 700px;
 }
 
+/* 自定义复选框样式 */
+.checkbox-container input[type="checkbox"] {
+  display: none; /* 隐藏原始的复选框 */
+}
+
+.checkbox-container label {
+  position: relative;
+  padding-left: 30px; /* 设置 label 的左内边距，留出空间放置自定义的复选框 */
+  cursor: pointer;
+  display: inline-block;
+}
+
+.checkbox-container label:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 20px; /* 设置自定义复选框的宽度 */
+  height: 20px; /* 设置自定义复选框的高度 */
+  border: 2px solid #008000; /* 设置边框样式，这里将颜色修改为深绿色 */
+  background-color: white; /* 设置背景色 */
+}
+
+.checkbox-container input[type="checkbox"]:checked + label:before {
+  content: "\2713"; /* Unicode 编码，表示勾号 ✓ */
+  text-align: center;
+  line-height: 20px;
+  color: #008000; /* 设置勾号颜色，这里也将颜色修改为深绿色 */
+}
+
+/* 其他样式，可以根据需要进行调整 */
+.checkbox-container {
+  margin-top: 10px;
+}
+
+
+
+
   
