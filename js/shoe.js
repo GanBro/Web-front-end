@@ -3,7 +3,7 @@
 // 模拟一些鞋子的数据
 var selectedSizes = [];
 var shoes = [
-  { name: "Shoe 1", price: 99.99, size: 35, category: "Basketball", brand: "Under Armour", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png", smallImages: ["./imgs/Nike Kyrie 6 CNY EP.png","./imgs/Nike Kyrie 6 CNY EP.png","./imgs/Nike Kyrie 6 CNY EP.png","./imgs/Nike Kyrie 6 CNY EP.png",] },
+  { name: "Shoe 1", price: 99.99, size: 35, category: "Basketball", brand: "Under Armour", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png", smallImages: ["./imgs/Nike Kyrie 6 CNY EP.png", "./imgs/Nike Kyrie 6 CNY EP.png", "./imgs/Nike Kyrie 6 CNY EP.png", "./imgs/Nike Kyrie 6 CNY EP.png",] },
   { name: "Shoe 2", price: 79.99, size: 36, category: "Running", brand: "New Balance", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png", smallImages: ["./imgs/Nike Kyrie 6 CNY EP.png"] },
   { name: "Shoe 3", price: 129.99, size: 37, category: "Formal", brand: "Cole Haan", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png", smallImages: ["./imgs/Nike Kyrie 6 CNY EP.png"] },
   { name: "Shoe 4", price: 89.99, size: 38, category: "Sneakers", brand: "Fila", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png", smallImages: ["./imgs/Nike Kyrie 6 CNY EP.png"] },
@@ -28,6 +28,8 @@ var searchTerm; // 搜索内容
 
 var shoesPerPage = 4;
 var currentPage = 1;
+var minPriceInput;
+var maxPriceInput;
 
 // 在全局范围定义 openModal 函数
 window.openModal = function (imagePath) {
@@ -154,7 +156,7 @@ function displayShoesByPage(pageNumber, shoes) {
 var searchInput = document.querySelector('input[type="text"]');
 
 // 在线监听输入事件
-searchInput.addEventListener('input', function(event) {
+searchInput.addEventListener('input', function (event) {
   searchTerm = event.target.value;
   event.preventDefault(); // 阻止表单提交
   filterShoes(); // 调用筛选函数
@@ -164,7 +166,7 @@ searchInput.addEventListener('input', function(event) {
 const form = document.getElementById('search-form');
 searchTerm = form.querySelector('input[type=text]').value;
 
-form.addEventListener('submit', function(event) {
+form.addEventListener('submit', function (event) {
   event.preventDefault(); // 阻止表单提交
   filterShoes(); // 调用筛选函数
 });
@@ -193,8 +195,6 @@ for (var i = 0; i < uniqueCategories.length; i++) {
 
 var selectCategory = document.getElementById("selectCategory");
 var sizeButtonsContainer = document.getElementById("sizeButtonsContainer");
-var minPriceInput = document.getElementById("minPrice");
-var maxPriceInput = document.getElementById("maxPrice");
 
 // 监听下拉框的变化事件
 selectCategory.addEventListener("change", filterShoes);
@@ -221,10 +221,6 @@ sizeButtonsContainer.addEventListener("click", function (event) {
     filterShoes();
   }
 });
-
-// 监听价格区间输入框失去焦点的事件
-minPriceInput.addEventListener("blur", filterByPriceRange);
-maxPriceInput.addEventListener("blur", filterByPriceRange);
 
 // 显示鞋子的函数
 function displayShoes(shoes) {
@@ -305,8 +301,8 @@ checkboxContainer.addEventListener("click", filterShoes);
 function filterShoes() {
   const value = searchTerm.trim().toLowerCase();
 
-  var minPrice = parseFloat(minPriceInput.value);
-  var maxPrice = parseFloat(maxPriceInput.value);
+  var minPrice = parseFloat(minPriceInput);
+  var maxPrice = parseFloat(maxPriceInput);
 
   var sortBy = selectCategory.value;
 
@@ -319,9 +315,9 @@ function filterShoes() {
     var sizeFilter = selectedSizes.length === 0 || selectedSizes.includes(shoe.size);
     var priceFilter = isNaN(minPrice) || isNaN(maxPrice) || (shoe.price >= minPrice && shoe.price <= maxPrice);
     var categoryFilter = selectedCategories.length === 0 || selectedCategories.includes(shoe.category);
-    
+
     // 根据搜索内容筛选
-    var searchFilter = searchTerm === '' || 
+    var searchFilter = searchTerm === '' ||
       shoe.name.toLowerCase().includes(value) ||
       shoe.brand.toLowerCase().includes(value) ||
       shoe.category.toLowerCase().includes(value);
@@ -353,10 +349,43 @@ function filterShoes() {
   initializePagination(filteredShoes);
 }
 
+import Slide from "./Slide.js";
+
+let priceSlider = new Slide(1000);
+priceSlider.appendTo("#priceSliderContainer");
+
+priceSlider.setOnChangeCallback(function (values) {
+  updatePriceInputs(values.min, values.max);
+});
+
+// var priceSlider = new Slide(1000);
+// priceSlider.appendTo("#priceSliderContainer");
+
+// priceSlider.elem.addEventListener("change", function (event) {
+//   var values = event.detail;
+//   minPriceInput.value = values.min;
+//   maxPriceInput.value = values.max;
+//   filterShoes(); // 确保在滑块变化时进行鞋子的过滤
+// });
+
+// 监听价格区间输入框失去焦点的事件demo
+// minPriceInput.addEventListener("blur", filterByPriceRange);
+// maxPriceInput.addEventListener("blur", filterByPriceRange);
+
+
+// var minPriceInput = document.getElementById("minPrice");
+// var maxPriceInput = document.getElementById("maxPrice");
+
+function updatePriceInputs(min, max) {
+  minPriceInput = min;
+  maxPriceInput = max;
+  filterByPriceRange();
+}
+
 // 添加价格区间筛选函数
 function filterByPriceRange() {
-  var minPrice = parseFloat(minPriceInput.value);
-  var maxPrice = parseFloat(maxPriceInput.value);
+  var minPrice = parseFloat(minPriceInput);
+  var maxPrice = parseFloat(maxPriceInput);
 
   // 确保输入有效数字
   if (!isNaN(minPrice) && !isNaN(maxPrice)) {
