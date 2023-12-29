@@ -2,28 +2,7 @@
 
 // 模拟一些鞋子的数据
 var selectedSizes = [];
-var shoes = [
-  { name: "Shoe 1", price: 99.99, size: 35, category: "Basketball", brand: "Under Armour", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png", smallImages: ["./imgs/Nike Kyrie 6 CNY EP.png", "./imgs/Nike Kyrie 6 CNY EP.png", "./imgs/Nike Kyrie 6 CNY EP.png", "./imgs/Nike Kyrie 6 CNY EP.png",] },
-  { name: "Shoe 2", price: 79.99, size: 36, category: "Running", brand: "New Balance", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png", smallImages: ["./imgs/Nike Kyrie 6 CNY EP.png"] },
-  { name: "Shoe 3", price: 129.99, size: 37, category: "Formal", brand: "Cole Haan", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png", smallImages: ["./imgs/Nike Kyrie 6 CNY EP.png"] },
-  { name: "Shoe 4", price: 89.99, size: 38, category: "Sneakers", brand: "Fila", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png", smallImages: ["./imgs/Nike Kyrie 6 CNY EP.png"] },
-  { name: "Shoe 5", price: 69.99, size: 39, category: "Hiking", brand: "Merrell", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png", smallImages: ["./imgs/Nike Kyrie 6 CNY EP.png"] },
-  { name: "Shoe 6", price: 119.99, size: 40, category: "Casual", brand: "Sperry", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png", smallImages: ["./imgs/Nike Kyrie 6 CNY EP.png"] },
-  { name: "Shoe 7", price: 99.99, size: 41, category: "Skateboarding", brand: "Vans", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png", smallImages: ["./imgs/Nike Kyrie 6 CNY EP.png"] },
-  { name: "Shoe 8", price: 79.99, size: 42, category: "Tennis", brand: "Asics", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png", smallImages: ["./imgs/Nike Kyrie 6 CNY EP.png"] },
-  { name: "Shoe 9", price: 139.99, size: 43, category: "Formal", brand: "Johnston & Murphy", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png", smallImages: ["./imgs/Nike Kyrie 6 CNY EP.png"] },
-  { name: "Shoe 10", price: 109.99, size: 44, category: "Sneakers", brand: "Puma", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png", smallImages: ["./imgs/Nike Kyrie 6 CNY EP.png"] },
-  { name: "Shoe 11", price: 89.99, size: 45, category: "Running", brand: "Under Armour", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png", smallImages: ["./imgs/Nike Kyrie 6 CNY EP.png"] },
-  { name: "Shoe 12", price: 149.99, size: 46, category: "Formal", brand: "Stacy Adams", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png", smallImages: ["./imgs/Nike Kyrie 6 CNY EP.png"] },
-  { name: "Shoe 13", price: 119.99, size: 35, category: "Skateboarding", brand: "DC Shoes", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png", smallImages: ["./imgs/Nike Kyrie 6 CNY EP.png"] },
-  { name: "Shoe 14", price: 99.99, size: 36, category: "Hiking", brand: "KEEN", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png", smallImages: ["./imgs/Nike Kyrie 6 CNY EP.png"] },
-  { name: "Shoe 15", price: 159.99, size: 37, category: "Formal", brand: "ECCO", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png", smallImages: ["./imgs/Nike Kyrie 6 CNY EP.png"] },
-  { name: "Shoe 16", price: 129.99, size: 38, category: "Sneakers", brand: "Fila", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png", smallImages: ["./imgs/Nike Kyrie 6 CNY EP.png"] },
-  { name: "Shoe 17", price: 109.99, size: 39, category: "Basketball", brand: "Nike", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png", smallImages: ["./imgs/Nike Kyrie 6 CNY EP.png"] },
-  { name: "Shoe 18", price: 179.99, size: 40, category: "Formal", brand: "Allen Edmonds", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png", smallImages: ["./imgs/Nike Kyrie 6 CNY EP.png"] },
-  { name: "Shoe 19", price: 149.99, size: 41, category: "Sneakers", brand: "Reebok", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png", smallImages: ["./imgs/Nike Kyrie 6 CNY EP.png"] },
-  // { name: "Shoe 20", price: 129.99, size: 42, category: "Casual", brand: "Clarks", imagePath: "./imgs/Nike Kyrie 6 CNY EP.png", smallImages: ["./imgs/Nike Kyrie 6 CNY EP.png"] }
-];
+import shoes from './shoesData.js'; // 导入鞋子数据
 var searchTerm; // 搜索内容
 
 var shoesPerPage = 4;
@@ -243,7 +222,7 @@ function displayShoes(shoes) {
               <p class="card-text">
                 <strong>Category:</strong> ${shoe.category}<br>
                 <strong>Brand:</strong> ${shoe.brand}<br>
-                <strong>Price:</strong> $${shoe.price.toFixed(2)}<br>
+                <strong>Price:</strong> ￥${shoe.price.toFixed(2)}<br>
                 <strong>Size:</strong> ${shoe.size}
               </p>
             </div>
